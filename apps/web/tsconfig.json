@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/config/tsconfig/nextjs",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/contracts": ["../../packages/contracts/src/index.ts"],
+      "@repo/contracts/*": ["../../packages/contracts/src/*"],
+      "@repo/env": ["../../packages/env/src/index.ts"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

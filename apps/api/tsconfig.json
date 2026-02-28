@@ -1,0 +1,17 @@
+{
+  "extends": "@repo/config/tsconfig/nestjs",
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@repo/contracts": ["../../packages/contracts/src/index.ts"],
+      "@repo/contracts/*": ["../../packages/contracts/src/*"],
+      "@repo/env": ["../../packages/env/src/index.ts"],
+      "@repo/env/api": ["../../packages/env/src/api.env.ts"],
+      "@repo/env/web": ["../../packages/env/src/web.env.ts"],
+      "@repo/database": ["../../packages/database/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
