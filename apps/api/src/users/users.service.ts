@@ -16,7 +16,7 @@ export class UsersService {
         email: dto.email,
         passwordHash,
         role: dto.role,
-      } satisfies Omit<CreateUserInput, 'appointments' | 'barberSlots'>,
+      } satisfies CreateUserInput,
       select: {
         id: true,
         name: true,

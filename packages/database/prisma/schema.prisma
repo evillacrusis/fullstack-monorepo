@@ -17,14 +17,6 @@ enum UserRole {
   ADMIN
 }
 
-enum AppointmentStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-  COMPLETED
-  NO_SHOW
-}
-
 // ─── Models ──────────────────────────────────────────────────────────────────
 
 model User {
@@ -35,48 +27,9 @@ model User {
   role         UserRole @default(CLIENT)
   isActive     Boolean  @default(true) @map("is_active")
 
-  // Relations
-  appointments Appointment[] @relation("ClientAppointments")
-  barberSlots  BarberSlot[]  @relation("BarberSlots")
-
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@index([email])
   @@map("users")
-}
-
-model BarberSlot {
-  id        String   @id @default(uuid())
-  barberId  String   @map("barber_id")
-  startTime DateTime @map("start_time")
-  endTime   DateTime @map("end_time")
-  isBooked  Boolean  @default(false) @map("is_booked")
-
-  barber      User         @relation("BarberSlots", fields: [barberId], references: [id], onDelete: Cascade)
-  appointment Appointment?
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([barberId, startTime])
-  @@map("barber_slots")
-}
-
-model Appointment {
-  id       String            @id @default(uuid())
-  clientId String            @map("client_id")
-  slotId   String            @unique @map("slot_id")
-  status   AppointmentStatus @default(PENDING)
-  notes    String?
-
-  client User       @relation("ClientAppointments", fields: [clientId], references: [id], onDelete: Cascade)
-  slot   BarberSlot @relation(fields: [slotId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([clientId])
-  @@index([slotId])
-  @@map("appointments")
 }
