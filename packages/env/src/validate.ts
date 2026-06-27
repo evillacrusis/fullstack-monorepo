@@ -1,13 +1,14 @@
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
+import type { z, ZodType, ZodTypeDef } from 'zod';
 
 /**
  * Validates and parses environment variables against a Zod schema.
  * Throws a descriptive error at startup if any variable is missing or invalid.
  */
-export function validateEnv<T extends z.ZodTypeAny>(
-  schema: T,
+export function validateEnv<Output, Input>(
+  schema: ZodType<Output, ZodTypeDef, Input>,
   raw: Record<string, unknown>,
-): z.infer<T> {
+): Output {
   try {
     return schema.parse(raw);
   } catch (err) {

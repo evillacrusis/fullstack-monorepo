@@ -15,7 +15,7 @@ export class ZodValidationPipe<T> implements PipeTransform {
     if (!result.success) {
       const zodError = result.error as ZodError;
       const fieldErrors = zodError.issues.reduce<Record<string, string[]>>((acc, issue) => {
-        const key = issue.path.join('.') || 'root';
+        const key = issue.path.length > 0 ? issue.path.join('.') : 'root';
         const existing = acc[key] ?? [];
         return { ...acc, [key]: [...existing, issue.message] };
       }, {});

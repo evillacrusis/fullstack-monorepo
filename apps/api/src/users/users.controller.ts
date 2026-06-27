@@ -1,8 +1,10 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserSchema, type CreateUserDto, type UserResponse } from '@repo/contracts';
-import { UsersService } from './users.service';
+
 import { ZodValidationPipe } from '../common/pipes/zod-validation.pipe';
+
+import { UsersService } from './users.service';
 
 @ApiTags('users')
 @Controller('users')

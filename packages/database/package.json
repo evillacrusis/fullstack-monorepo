@@ -14,8 +14,8 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx src/seed.ts",
     "db:reset": "prisma migrate reset --force",
-    "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint src",
+    "typecheck": "pnpm db:generate && tsc --noEmit"
   },
   "dependencies": {
     "@prisma/client": "^7.6.0"

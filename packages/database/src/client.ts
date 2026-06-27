@@ -5,7 +5,6 @@ import { PrismaClient } from '@prisma/client';
 // In production a single instance is created per process.
 
 declare global {
-  // eslint-disable-next-line no-var
   var __prismaClient: PrismaClient | undefined;
 }
 

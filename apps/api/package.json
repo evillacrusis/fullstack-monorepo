@@ -6,7 +6,7 @@
     "build": "nest build",
     "dev": "nodemon --exec 'ts-node --project tsconfig.dev.json -r dotenv/config -r tsconfig-paths/register -r reflect-metadata src/main.ts' --ext ts --watch src --watch ../../packages/contracts/src --watch ../../packages/env/src --watch ../../packages/database/src",
     "start": "node dist/main",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -10,7 +10,7 @@
     "./web": "./src/web.env.ts"
   },
   "scripts": {
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

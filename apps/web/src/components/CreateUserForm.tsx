@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { type CreateUserDto, CreateUserSchema } from '@repo/contracts';
 import { publicWebEnv } from '@repo/env/web';
+import { useState } from 'react';
 
 type FormState =
   | { status: 'idle' }
@@ -33,7 +33,7 @@ export function CreateUserForm(): React.JSX.Element {
     const result = CreateUserSchema.safeParse(raw);
     if (!result.success) {
       const errors = result.error.issues.reduce<Record<string, string[]>>((acc, issue) => {
-        const key = issue.path.join('.') || 'root';
+        const key = issue.path.length > 0 ? issue.path.join('.') : 'root';
         return { ...acc, [key]: [...(acc[key] ?? []), issue.message] };
       }, {});
       setState({ status: 'error', errors });
